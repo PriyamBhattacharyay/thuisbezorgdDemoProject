@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.automation.testcases.SearchTest">
+        <methods>
+          <include name="SearchTestTestCase006"/>
+          <include name="SearchTestTestCase004"/>
+          <include name="setUpSuite"/>
+          <include name="SearchTestTestCase005"/>
+          <include name="OpenApplication"/>
+          <include name="SearchTestTestCase002"/>
+          <include name="SearchTestTestCase003"/>
+          <include name="tearDownMethod"/>
+        </methods>
+      </class> <!-- com.automation.testcases.SearchTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
