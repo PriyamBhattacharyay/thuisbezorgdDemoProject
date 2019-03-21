@@ -88,8 +88,7 @@ public class BaseClass {
 		
 		System.out.println("Report End");
 		BrowserFactory.quiteBrowser(driver);
-		
-		
+				
 	}
 	
 	

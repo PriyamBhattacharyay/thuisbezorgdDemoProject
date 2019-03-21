@@ -22,7 +22,7 @@ public class ThuisbezorgdHomePage {
 		
 	}
 	
-	
+	// Home Page Web Elements
 	@FindBy(xpath = "//*[@id=\"imysearchstring\"]") WebElement Searchbox;
 	@FindBy(xpath = "//*[@id=\"submit_deliveryarea\"]") WebElement Searchbutton;
 	
@@ -51,61 +51,60 @@ public class ThuisbezorgdHomePage {
 	@FindBy(xpath = "//*[@id=\"iautoCompleteDropDownContent\"]/a[1]") WebElement validAddressDropValue;
 	
 	
-	
-	
-	
-	
-	
-	
 	public void ThuisbezorgdSearch (String searchCode, String noOfRestaurant) {
 		
 		try {
-			Helper.highLightElement(driver, Searchbox);
-			Searchbox.click();
-			Searchbox.clear();
-			Searchbox.sendKeys(searchCode);
-			Searchbox.sendKeys(Keys.TAB);
-			spanOrderfoodtheeasyway.click();
-			Helper.highLightElement(driver, Searchbutton);
-			Searchbutton.click();
-			Helper.highLightElement(driver, searchheading_1);
-			
-			BaseClass.logger.info("Verify that Page heading (Order takeaway in) is displayed in the Search Page");
-			
-			if (searchheading_1.getText().contentEquals("Order takeaway in"))
-			{
-				BaseClass.logger.pass("Test step passed. Page heading - (Order takeaway in) is displayed");
-			}
-			else 
-			{
-				BaseClass.logger.fail("Test step failed. Page heading - (Order takeaway in) is not displayed");
-			}
 					
-			if (searchheading_2.getText().contains((searchCode.replaceAll(" ",""))))
-			{
-				BaseClass.logger.pass("Test step passed. Page heading - "+searchCode+" is displayed");
-			}
-			else 
-			{
-				BaseClass.logger.fail("Test step failed. Page heading - "+searchCode+" is not displayed");
-			}
-			
-			Helper.highLightElement(driver, searchtotalrestaurantsno);
-				
-			if (searchtotalrestaurantsno.getText().contains(noOfRestaurant))
-			{
-				
-				BaseClass.logger.pass("Test step passed. Total "+noOfRestaurant+" Restaurants are listed");
-				
-			}
-			else
-			{
-				BaseClass.logger.fail("Test step failed. Total 126 Restaurants are not listed");
-			}
-		} catch (Exception e) {
-			
-			BaseClass.logger.fail("Test Case Failed. Unable to locate Element"+e.getMessage());
-		}	
+					Helper.highLightElement(driver, Searchbox);
+					Searchbox.click();
+					Searchbox.clear();
+					Searchbox.sendKeys(searchCode);
+					Searchbox.sendKeys(Keys.TAB);
+					spanOrderfoodtheeasyway.click();
+					Helper.highLightElement(driver, Searchbutton);
+					Searchbutton.click();
+					Helper.highLightElement(driver, searchheading_1);
+					
+					BaseClass.logger.info("Step 4A: Verify that Page heading (Order takeaway in) is displayed in the Search Page");
+					
+					if (searchheading_1.getText().contentEquals("Order takeaway in"))
+					{
+						BaseClass.logger.pass("Test step passed. Page heading - (Order takeaway in) is displayed");
+					}
+					else 
+					{
+						BaseClass.logger.fail("Test step failed. Page heading - (Order takeaway in) is not displayed");
+					}
+					
+					BaseClass.logger.info("Step 4B: Verify that Second Page heading "+searchCode+" is displayed in the Search Page");
+							
+					if (searchheading_2.getText().contains((searchCode.replaceAll(" ",""))))
+					{
+						BaseClass.logger.pass("Test step passed. Page heading - "+searchCode+" is displayed");
+					}
+					else 
+					{
+						BaseClass.logger.fail("Test step failed. Page heading - "+searchCode+" is not displayed");
+					}
+					
+					Helper.highLightElement(driver, searchtotalrestaurantsno);
+					
+					BaseClass.logger.info("Step 4C: Verify that Total "+noOfRestaurant+" Restaurants are listed at the Left Corner of the page");
+						
+					if (searchtotalrestaurantsno.getText().contains(noOfRestaurant))
+					{
+						
+						BaseClass.logger.pass("Test step passed. Total "+noOfRestaurant+" Restaurants are listed");
+						
+					}
+					else
+					{
+						BaseClass.logger.fail("Test step failed. Total "+noOfRestaurant+" Restaurants are not listed");
+					}
+				} catch (Exception e) {
+					
+					BaseClass.logger.fail("Test Case Failed. Unable to locate Element"+e.getMessage());
+				}	
 		
 		
 	}
@@ -128,10 +127,8 @@ public class ThuisbezorgdHomePage {
 			Actions act = new Actions(driver);
 			act.moveToElement(invalidPostCodeMessage).perform();
 			
-			BaseClass.logger.info("Verify that if User enters a wrong post code then system should display a error notification. Please verify manually the error message to see the attached screenshot. The error message should be (The entered postcode is invalid. A postcode needs to consist out of at least 4 digits and an optional two letters. For example: 1017AB.) ");
-			
-			System.out.println("Message is displayed "+invalidPostCodeMessage.isEnabled());
-			
+			BaseClass.logger.info("Step 4A: Verify that if User enters a wrong post code then system should display a error notification. Please verify manually the error message to see the attached screenshot. The error message should be (The entered postcode is invalid. A postcode needs to consist out of at least 4 digits and an optional two letters. For example: 1017AB.) ");
+								
 			if (invalidPostCodeMessage.isEnabled() == true)
 			{
 				BaseClass.logger.pass("Test step passed. Error notification is displayed");
@@ -141,14 +138,14 @@ public class ThuisbezorgdHomePage {
 			else 
 				
 			{
-				BaseClass.logger.pass("Test step passed. Errorrr notification is displayed");
+				BaseClass.logger.fail("Test step passed. Errorrr notification is not displayed");
 			}
 				
 			
 			
 		} catch (Exception e) {
 			
-			System.out.println("Unable to locate Element "+e.getMessage());
+			
 			BaseClass.logger.fail("Test Case Failed. Unable to locate Element"+e.getMessage());
 		}	
 		
@@ -229,6 +226,7 @@ public class ThuisbezorgdHomePage {
 			BaseClass.logger.fail("Test step failed. Page heading 1 is not translated to english");
 		}	
 		
+		
 		if (homepageheading_2.getText().contentEquals("Find restaurants in your area"))
 		{
 			BaseClass.logger.pass("Test step passed. Page heading - (Find restaurants in your area) is translated to english");			
@@ -275,7 +273,8 @@ public class ThuisbezorgdHomePage {
 				
 				List<WebElement> links = driver.findElements(By.xpath(("//*[@id=\"iautoCompleteDropDownContent\"]/a")));
 				int total_count = links.size();
-								
+				
+				BaseClass.logger.info("Step 4A: Verify that correct Address is listed in suggested drop-down");
 			
 				
 				for (int i=0; i<=total_count; i++)
@@ -297,7 +296,7 @@ public class ThuisbezorgdHomePage {
 						
 				}
 				
-				BaseClass.logger.info("Verify that Page heading (Order takeaway in) is displayed in the Search Page");
+				BaseClass.logger.info("Step 4B: Verify that Page heading (Order takeaway in) is displayed");
 				
 				if (searchheading_1.getText().contentEquals("Order takeaway in"))
 				{
@@ -307,6 +306,8 @@ public class ThuisbezorgdHomePage {
 				{
 					BaseClass.logger.fail("Test step failed. Page heading - (Order takeaway in) is not displayed");
 				}
+				
+				BaseClass.logger.info("Step 4C: Verify that Page heading - Brouwerijstraat 10, Enschede is displayed");
 						
 				if (searchheading_2.getText().equalsIgnoreCase("Brouwerijstraat 10, Enschede"))
 				{
@@ -318,6 +319,8 @@ public class ThuisbezorgdHomePage {
 				}
 				
 				Helper.highLightElement(driver, searchtotalrestaurantsno);
+				
+				BaseClass.logger.info("Step 4D: Verify that total "+noOfRestaurant+" Restaurants are listed at the left corner of the page");
 					
 				if (searchtotalrestaurantsno.getText().contains(noOfRestaurant))
 				{
@@ -327,7 +330,7 @@ public class ThuisbezorgdHomePage {
 				}
 				else
 				{
-					BaseClass.logger.fail("Test step failed. Total 126 Restaurants are not listed");
+					BaseClass.logger.fail("Test step failed.  Total "+noOfRestaurant+" Restaurants are not listed");
 				}
 			
 			
@@ -344,7 +347,9 @@ public class ThuisbezorgdHomePage {
 		
 		try {
 				Thread.sleep(5000);	
+				
 				BaseClass.logger.info("Verify that application collected the User geolocation and place in Search");
+				
 				spanOrderfoodtheeasyway.click();
 				Searchbutton.click();	
 							

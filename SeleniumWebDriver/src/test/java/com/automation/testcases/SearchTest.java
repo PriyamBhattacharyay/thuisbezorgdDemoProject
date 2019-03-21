@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import com.automation.pages.BaseClass;
 import com.automation.pages.ThuisbezorgdHomePage;
+import com.automation.pages.ThuisbezorgdOrderTakeaway;
 
 public class SearchTest extends BaseClass {	
 	
@@ -35,7 +36,7 @@ public class SearchTest extends BaseClass {
 	}
 	
 		
-	@Test (priority = 2)	 
+	@Test (priority = 6)	 
 	public void SearchTestTestCase002 () {	
 		
 		ThuisbezorgdHomePage homePage = PageFactory.initElements(driver, ThuisbezorgdHomePage.class);
@@ -55,13 +56,14 @@ public class SearchTest extends BaseClass {
 		homePage.ThuisbezorgdLanguage();
 			
 		logger.info("Step 4: Search with the valid Address >> "+address);
-		String noOfRestaurant = "126";
+		
+		String noOfRestaurant = "127";
 		
 		homePage.ThuisbezorgdSearch(address, noOfRestaurant);		
 		
 	}	
 	
-	@Test (priority = 3)	 
+	@Test (priority = 2)	 
 	public void SearchTestTestCase003 () {		
 		
 		ThuisbezorgdHomePage homePage = PageFactory.initElements(driver, ThuisbezorgdHomePage.class);
@@ -82,18 +84,18 @@ public class SearchTest extends BaseClass {
 		
 		homePage.ThuisbezorgdLanguage();
 			
-		logger.info("Step 1: Search with the invalid postcode >> "+postcode);
+		logger.info("Step 4: Search with the invalid postcode >> "+postcode);
 		
 		homePage.ThuisbezorgdNegativePOSTCODESearch(postcode);			
 		
 	}
 	
-	@Test (priority = 4)	 
+	@Test (priority = 3)	 
 	public void SearchTestTestCase004 () {		
 		
 		ThuisbezorgdHomePage homePage = PageFactory.initElements(driver, ThuisbezorgdHomePage.class);
 		
-		logger = reports.createTest("Test Description: Validate the search result with API's suggested addres list");
+		logger = reports.createTest("Test Description: Validate the search result with API's suggested addres list & Validate all the restaurants are listed in the Search Result Page");
 		
 		String address = excel.getStringData("SearchData", 4, 3);	
 		
@@ -109,15 +111,19 @@ public class SearchTest extends BaseClass {
 		
 		homePage.ThuisbezorgdLanguage();
 			
-		logger.info("Step 1: Search with the invalid postcode >> "+address);
+		logger.info("Step 4: Search with the valid address >> "+address);
 		
-		String noOfRestaurant = "96";
+		String noOfRestaurant = "97";
 		
-		homePage.ThuisbezorgdSearchTypeandClick(address, noOfRestaurant);			
+		homePage.ThuisbezorgdSearchTypeandClick(address, noOfRestaurant);
+		
+		ThuisbezorgdOrderTakeaway SearchPage = PageFactory.initElements(driver, ThuisbezorgdOrderTakeaway.class);
+		
+		SearchPage.ThuisbezorgdListofRestaurants();
 		
 	}
 	
-	@Test (priority = 5)	 
+	@Test (priority = 4)	 
 	public void SearchTestTestCase005 () {		
 		
 		ThuisbezorgdHomePage homePage = PageFactory.initElements(driver, ThuisbezorgdHomePage.class);
@@ -138,13 +144,13 @@ public class SearchTest extends BaseClass {
 		
 		homePage.ThuisbezorgdLanguage();
 			
-		logger.info("Step 1: Search with the invalid postcode >> "+address);
+		logger.info("Step 4: Search with the invalid address >> "+address);
 		
 		homePage.ThuisbezorgdNegativeAddressSearch(address);			
 		
 	}
 	
-	@Test (priority = 6)	 
+	@Test (priority = 5)	 
 	public void SearchTestTestCase006 () {		
 		
 		ThuisbezorgdHomePage homePage = PageFactory.initElements(driver, ThuisbezorgdHomePage.class);

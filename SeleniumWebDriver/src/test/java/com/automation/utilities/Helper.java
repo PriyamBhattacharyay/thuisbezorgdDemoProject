@@ -51,7 +51,7 @@ public class Helper {
 
 		try 
 		{
-		Thread.sleep(500);
+		Thread.sleep(300);
 		} 
 		catch (InterruptedException e) {
 	
@@ -61,5 +61,26 @@ public class Helper {
 		js.executeScript("arguments[0].setAttribute('style','border: solid 2px white');", element); 
 
 	}
+	
+	public static void pageScroll(WebDriver driver, WebElement element)
+	{
+		JavascriptExecutor js=(JavascriptExecutor)driver;  
+		js.executeScript("arguments[0].scrollIntoView();", element);
+		  
+		     
+	}
+	
+	public static String createXpath (String xpathExp, Object ...args) {
+		
+		for (int i = 0; i<args.length; i++) {
+			
+			xpathExp = xpathExp.replace ("{"+i+"}", ((CharSequence) args[i]));
+			
+		}
+		
+		return xpathExp;
 
+	}
+		 
+	
 }
